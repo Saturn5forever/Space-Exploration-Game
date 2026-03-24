@@ -9,14 +9,15 @@ public class Movement : MonoBehaviour
     public float moveSpeed;
     public InputAction MoveKeys;
     public InputAction RotateKeys;
+    public float rotationSpeed = 0.5f;
     
     Rigidbody2D rb;
 
     public InputAction BoostKey;
-    public float boostSpeed = 25f;
+    public float boostSpeed = 32f;
     private bool canBoost;
     public float boostTime = 3f;
-    public float boostCooldownDuration = 5f;
+    public float boostCooldownDuration = 10f;
     public Image cooldownOverlay;
     private float remainingTime;
 
@@ -37,16 +38,13 @@ public class Movement : MonoBehaviour
         Vector2 moveDirection = MoveKeys.ReadValue<Vector2>();
         rb.AddRelativeForce(moveDirection * moveSpeed, ForceMode2D.Force);
         Vector2 rotationDirection = RotateKeys.ReadValue<Vector2>();
-        transform.Rotate(transform.rotation.x, transform.rotation.y, rotationDirection.x);
+        transform.Rotate(transform.rotation.x, transform.rotation.y, rotationDirection.x * rotationSpeed);
 
         if (BoostKey.WasPressedThisFrame() && canBoost == true)
         {
             moveSpeed = boostSpeed;
             canBoost = false;
             StartCoroutine(BoostingCooldown());
-            
-
-
         }
     }
 
