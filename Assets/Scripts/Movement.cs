@@ -1,6 +1,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class Movement : MonoBehaviour
 {
@@ -8,13 +9,16 @@ public class Movement : MonoBehaviour
     public float moveSpeed;
     public InputAction MoveKeys;
     public InputAction RotateKeys;
-    public InputAction BoostKey;
+    
     Rigidbody2D rb;
 
+    public InputAction BoostKey;
     public float boostSpeed = 25f;
-    public bool canBoost;
+    private bool canBoost;
     public float boostTime = 3f;
-    public float boostCooldown = 5f;
+    public float boostCooldownDuration = 5f;
+    public Image cooldownOverlay;
+    private float remainingTime;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -39,18 +43,32 @@ public class Movement : MonoBehaviour
         {
             moveSpeed = boostSpeed;
             canBoost = false;
-            Invoke("ResetBoosting", boostTime);
+            StartCoroutine(BoostingCooldown());
+            
+
 
         }
     }
 
-    void ResetBoosting()
+    IEnumerator BoostingCooldown()
     {
+        canBoost = false;
+        remainingTime = boostCooldownDuration;
+        yield return new WaitForSeconds(boostTime);
         moveSpeed = maxSpeed;
-        Invoke("BoostingCooldown", boostCooldown);
-    }
-    void BoostingCooldown()
-    {
+        cooldownOverlay.fillAmount = 1f;
+        while(remainingTime > 0)
+        {
+            remainingTime -= Time.deltaTime;
+            UpdateCooldownUI();
+            yield return null;
+        }
         canBoost = true;
+        cooldownOverlay.fillAmount = 0f;
     }
-}
+
+    void UpdateCooldownUI()
+    {
+        cooldownOverlay.fillAmount = remainingTime / boostCooldownDuration;
+    }
+}   
