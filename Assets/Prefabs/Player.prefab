@@ -104,7 +104,7 @@ GameObject:
   - component: {fileID: 484982741274925131}
   - component: {fileID: 5719554962812695785}
   - component: {fileID: 4118986010101020125}
-  - component: {fileID: 6789097692554165746}
+  - component: {fileID: 2920209801528503543}
   m_Layer: 3
   m_Name: Player
   m_TagString: Untagged
@@ -259,7 +259,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDamping: 0.5
+  m_LinearDamping: 0.2
   m_AngularDamping: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -317,7 +317,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 2.78, y: 4.94}
+  m_Size: {x: 4.22, y: 6.04}
   m_EdgeRadius: 0
 --- !u!114 &4118986010101020125
 MonoBehaviour:
@@ -331,7 +331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c50c4bac58c5b8459bdd2a5a4dd7ae2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Attractable
---- !u!114 &6789097692554165746
+--- !u!114 &2920209801528503543
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -340,7 +340,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 7567201560253436125}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a3db3494c82fcba4eabc3d4b9c7b9986, type: 3}
+  m_Script: {fileID: 11500000, guid: 23d6f6eec6ae9144d837ebbfc358104c, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Timer
+  m_EditorClassIdentifier: Assembly-CSharp::CrateFinish
   timerText: {fileID: 0}
+  highScoreText: {fileID: 0}
+  finishTime: 0
