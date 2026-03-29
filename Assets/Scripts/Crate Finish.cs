@@ -13,9 +13,16 @@ public class CrateFinish : MonoBehaviour
 
     private bool timerActive = true;
 
+    public GameObject nextLevelButton;
+    public GameObject restartLevelButton;
+    public TextMeshProUGUI newHighText;
+
     void Awake()
     {
         timerText.enabled = true;
+        nextLevelButton.SetActive(false);
+        restartLevelButton.SetActive(false);
+        newHighText.text = "";
     }
 
     void Start()
@@ -30,6 +37,8 @@ public class CrateFinish : MonoBehaviour
             collision.gameObject.GetComponentInChildren<Gravity>().enabled = true;
             finishTime = roundedTime;
             timerActive = false;
+            nextLevelButton.SetActive(true);
+            restartLevelButton.SetActive(true);
             ChangeHighScore();
         }
     }
@@ -38,7 +47,7 @@ public class CrateFinish : MonoBehaviour
     {
         if (timerActive)
         {
-            roundedTime = Mathf.Round(Time.time * 100f) / 100f;
+            roundedTime = Mathf.Round(Time.timeSinceLevelLoad * 100f) / 100f;
             timerText.text = roundedTime.ToString();     
         }
             
@@ -46,25 +55,25 @@ public class CrateFinish : MonoBehaviour
     
     void LoadHighScore()
     {
-        float savedHighScore = PlayerPrefs.GetFloat(highScoreKey, 0);
+        float savedHighScore = PlayerPrefs.GetFloat(highScoreKey, 100000000000);
         highScoreText.text = "High: " + savedHighScore.ToString();
     }
 
     void ChangeHighScore()
     {
-        float savedHighScore = PlayerPrefs.GetFloat(highScoreKey, 0);
+        float savedHighScore = PlayerPrefs.GetFloat(highScoreKey, 100000000000);
         if(finishTime < savedHighScore)
         {
             PlayerPrefs.SetFloat(highScoreKey, finishTime);
             PlayerPrefs.Save();
-            Debug.Log("SAVED HIGHSCORE");
+            newHighText.text = "New Highscore!";
             UpdateUI();
         }
     }
 
     void UpdateUI()
     {
-        float savedHighScore = PlayerPrefs.GetFloat(highScoreKey, 0);
+        float savedHighScore = PlayerPrefs.GetFloat(highScoreKey, 100000000000);
         highScoreText.text = "High: " + savedHighScore; 
     }
 }   
