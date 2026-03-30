@@ -21,9 +21,14 @@ public class Movement : MonoBehaviour
     public Image cooldownOverlay;
     private float remainingTime;
 
+    AudioSource audioSource;
+    public AudioClip movingAudio;
+    private bool isMoving = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        audioSource = GetComponent<AudioSource>();
         MoveKeys.Enable();
         RotateKeys.Enable();
         BoostKey.Enable();
@@ -39,6 +44,7 @@ public class Movement : MonoBehaviour
         rb.AddRelativeForce(moveDirection * moveSpeed * 100 * Time.deltaTime, ForceMode2D.Force);
         Vector2 rotationDirection = RotateKeys.ReadValue<Vector2>();
         transform.Rotate(transform.rotation.x, transform.rotation.y, rotationDirection.x * rotationSpeed);
+
     }
 
     void Update()
@@ -48,6 +54,23 @@ public class Movement : MonoBehaviour
             moveSpeed = boostSpeed;
             canBoost = false;
             StartCoroutine(BoostingCooldown());
+        }
+        if (MoveKeys.IsPressed())
+        {
+            if (!isMoving)
+            {
+                audioSource.Play();
+                isMoving = true;
+            }
+            
+        }
+        else
+        {
+            if (isMoving)
+            {
+                audioSource.Stop();
+                isMoving = false;
+            }
         }
     }
 

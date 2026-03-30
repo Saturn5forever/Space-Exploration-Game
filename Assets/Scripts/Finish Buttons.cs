@@ -6,11 +6,9 @@ public class NextLevel : MonoBehaviour
 {
     public void ChangeLevel()
     {
-        Debug.Log("LEVELEVELLEVEL");
-        if (SceneManager.GetActiveScene().buildIndex < SceneManager.sceneCountInBuildSettings)
+        if (SceneManager.GetActiveScene().buildIndex + 1 < SceneManager.sceneCountInBuildSettings)
         {
            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1); 
-           Debug.Log("Loading Scene");
         }
         else
         {
