@@ -8,7 +8,7 @@ Hello, I am Saturn and I'm making an open sourced game about racing spaceships t
 - Fun SFX
 - Highscore/Score System
 
-Itch.io link [https://saturn5forever.itch.io/void-space-alpha](url)
+Itch.io link [Void Space Alpha](https://saturn5forever.itch.io/void-space-alpha)
 
 # **Screen Shots:**
   
