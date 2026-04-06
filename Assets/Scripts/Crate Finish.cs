@@ -1,4 +1,3 @@
-using System;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -17,6 +16,10 @@ public class CrateFinish : MonoBehaviour
     public GameObject restartLevelButton;
     public TextMeshProUGUI newHighText;
 
+    AudioSource audioSource;
+    public AudioClip finishSound;
+    public AudioClip newHighscoreSound;
+
     void Awake()
     {
         timerText.enabled = true;
@@ -29,17 +32,22 @@ public class CrateFinish : MonoBehaviour
     {
         highScoreKey = "Highscore_" + SceneManager.GetActiveScene().name;
         LoadHighScore();
+        audioSource = GetComponent<AudioSource>();
     }
     void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Finish"))
         {
             collision.gameObject.GetComponentInChildren<Gravity>().enabled = true;
+            GetComponent<Movement>().enabled = false;
             finishTime = roundedTime;
             timerActive = false;
             nextLevelButton.SetActive(true);
             restartLevelButton.SetActive(true);
             ChangeHighScore();
+            audioSource.PlayOneShot(finishSound);
+            
+
         }
     }
 
@@ -67,6 +75,7 @@ public class CrateFinish : MonoBehaviour
             PlayerPrefs.SetFloat(highScoreKey, finishTime);
             PlayerPrefs.Save();
             newHighText.text = "New Highscore!";
+            audioSource.PlayOneShot(newHighscoreSound);
             UpdateUI();
         }
     }

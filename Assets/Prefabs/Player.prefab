@@ -351,6 +351,7 @@ MonoBehaviour:
   nextLevelButton: {fileID: 0}
   restartLevelButton: {fileID: 0}
   newHighText: {fileID: 0}
+  finishSound: {fileID: 8300000, guid: e95b7cc2e21140d439f2f2159032e67c, type: 3}
 --- !u!82 &1112524707139494883
 AudioSource:
   m_ObjectHideFlags: 0
@@ -364,7 +365,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_Resource: {fileID: 8300000, guid: 5dfcb36fc86f1734eb0f103e529cee54, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.441
   m_Pitch: 1
   Loop: 1
   Mute: 0

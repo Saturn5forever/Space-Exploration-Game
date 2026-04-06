@@ -3631,26 +3631,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 545805833454735857, guid: 031f37bbe0c06ee41b594cf37103c7ba, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -110.9238
-      objectReference: {fileID: 0}
-    - target: {fileID: 545805833454735857, guid: 031f37bbe0c06ee41b594cf37103c7ba, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 168.92839
-      objectReference: {fileID: 0}
     - target: {fileID: 4479478206946754241, guid: 031f37bbe0c06ee41b594cf37103c7ba, type: 3}
       propertyPath: Target.TrackingTarget
       value: 
       objectReference: {fileID: 8282645364685505578}
-    - target: {fileID: 6437394182742554106, guid: 031f37bbe0c06ee41b594cf37103c7ba, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -110.9238
-      objectReference: {fileID: 0}
-    - target: {fileID: 6437394182742554106, guid: 031f37bbe0c06ee41b594cf37103c7ba, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 168.92839
-      objectReference: {fileID: 0}
     - target: {fileID: 6609556210071392081, guid: 031f37bbe0c06ee41b594cf37103c7ba, type: 3}
       propertyPath: m_Name
       value: Cameras

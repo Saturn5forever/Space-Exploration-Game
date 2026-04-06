@@ -23,6 +23,7 @@ public class Movement : MonoBehaviour
 
     AudioSource audioSource;
     public AudioClip movingAudio;
+    public AudioClip collisionSound;
     private bool isMoving = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -35,6 +36,13 @@ public class Movement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         canBoost = true;
         moveSpeed = maxSpeed;
+    }
+    void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.gameObject.CompareTag("Object"))
+        {
+            audioSource.PlayOneShot(collisionSound);
+        }
     }
 
     // Update is called once per frame
@@ -95,4 +103,5 @@ public class Movement : MonoBehaviour
     {
         cooldownOverlay.fillAmount = remainingTime / boostCooldownDuration;
     }
+
 }   
